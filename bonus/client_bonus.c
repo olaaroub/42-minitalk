@@ -6,7 +6,7 @@
 /*   By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:25:34 by olaaroub          #+#    #+#             */
-/*   Updated: 2024/06/10 20:02:23 by olaaroub         ###   ########.fr       */
+/*   Updated: 2024/06/10 20:18:37 by olaaroub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,11 @@ int	main(int argc, char **argv)
 		ft_printf("Usage: %s <PID> <message>\n");
 		return (1);
 	}
-	if (ft_atoi(argv[1]) <= 0)
-	{
-		ft_printf("<PID> Should be > 0\n");
-		return (1);
-	}
 	pid = ft_atoi(argv[1]);
 	sa.sa_handler = handle_sig;
 	sigaction(SIGUSR1, &sa, NULL);
 	send_signal(pid, argv[2]);
-	while (recieved_signal == 0)
+	while (g_recieved_signal == 0)
 		;
 	return (0);
 }
