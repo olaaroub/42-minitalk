@@ -6,7 +6,7 @@
 #    By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/08 20:43:53 by olaaroub          #+#    #+#              #
-#    Updated: 2024/06/09 11:29:02 by olaaroub         ###   ########.fr        #
+#    Updated: 2024/06/10 11:54:07 by olaaroub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CLIENT_NAME = client
 SERVER_NAME = server
 LIB = libft/libft.a
 
-mandatory:  $(SERVER_NAME) $(CLIENT_NAME)
+all:  $(SERVER_NAME) $(CLIENT_NAME)
 
 $(CLIENT_NAME): $(CLIENT_OBJ) $(LIB)
 	$(CC) $(CFLAGS) $(CLIENT_OBJ) $(LIB)  -o $(CLIENT_NAME)
