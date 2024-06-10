@@ -6,12 +6,13 @@
 /*   By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:25:34 by olaaroub          #+#    #+#             */
-/*   Updated: 2024/06/10 20:18:37 by olaaroub         ###   ########.fr       */
+/*   Updated: 2024/06/10 22:25:10 by olaaroub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include <signal.h>
+#define SUCCESS_MESSAGE "\033[0;32mMessage sent successfully\033[0m\n"
 
 int			g_recieved_signal = 0;
 
@@ -19,7 +20,7 @@ static void	handle_sig(int sig)
 {
 	if (sig == SIGUSR1)
 	{
-		write(1, "Message sent successfully\n", 26);
+		ft_printf("%s", SUCCESS_MESSAGE);
 		g_recieved_signal = 1;
 	}
 }
@@ -58,10 +59,15 @@ int	main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		ft_printf("Usage: %s <PID> <message>\n");
+		ft_printf("\033[0;31mUsage: ./client_bonus <PID> <message>\033[0m\n");
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
+	if (kill(pid, 0) == -1 || pid <= 0)
+	{
+		ft_printf("\033[0;31mInvalid PID\033[0m\n");
+		return (1);
+	}
 	sa.sa_handler = handle_sig;
 	sigaction(SIGUSR1, &sa, NULL);
 	send_signal(pid, argv[2]);

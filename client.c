@@ -6,7 +6,7 @@
 /*   By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 17:34:00 by olaaroub          #+#    #+#             */
-/*   Updated: 2024/06/10 19:08:32 by olaaroub         ###   ########.fr       */
+/*   Updated: 2024/06/10 22:25:32 by olaaroub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ int	main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		ft_printf("Usage: %s <PID> <message>\n");
-		return (1);
-	}
-	if (ft_atoi(argv[1]) <= 0)
-	{
-		ft_printf("<PID> Should be > 0\n");
+		ft_printf("\033[0;31mUsage: ./client  <PID> <message>\033[0m\n");
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
+	if (pid <= 0 || kill(pid, 0) == -1)
+	{
+		ft_printf("\033[0;31mInvalid PID\033[0m\n");
+		return (1);
+	}
 	send_signal(pid, argv[2]);
 	return (0);
 }

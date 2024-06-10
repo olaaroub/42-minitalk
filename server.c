@@ -6,7 +6,7 @@
 /*   By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:53:36 by olaaroub          #+#    #+#             */
-/*   Updated: 2024/06/10 19:04:04 by olaaroub         ###   ########.fr       */
+/*   Updated: 2024/06/10 22:19:28 by olaaroub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(void)
 
 	action.sa_handler = signal_handler;
 	pid = getpid();
-	ft_printf("%d\n", pid);
+	ft_printf("\033[0;32m%d\033[0m\n", pid);
 	sigaction(SIGUSR1, &action, NULL);
 	sigaction(SIGUSR2, &action, NULL);
 	while (1)
