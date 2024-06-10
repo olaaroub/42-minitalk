@@ -1,17 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/08 17:34:00 by olaaroub          #+#    #+#             */
-/*   Updated: 2024/06/10 19:08:32 by olaaroub         ###   ########.fr       */
+/*   Created: 2024/06/10 18:25:34 by olaaroub          #+#    #+#             */
+/*   Updated: 2024/06/10 20:02:23 by olaaroub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "../libft/libft.h"
 #include <signal.h>
+
+int			g_recieved_signal = 0;
+
+static void	handle_sig(int sig)
+{
+	if (sig == SIGUSR1)
+	{
+		write(1, "Message sent successfully\n", 26);
+		g_recieved_signal = 1;
+	}
+}
 
 static void	send_signal(int pid, char *str)
 {
@@ -21,8 +32,8 @@ static void	send_signal(int pid, char *str)
 	int				k;
 
 	j = strlen(str);
-	k = 0;
 	hold = 0;
+	k = 0;
 	while (k <= j)
 	{
 		i = 7;
@@ -42,7 +53,8 @@ static void	send_signal(int pid, char *str)
 
 int	main(int argc, char **argv)
 {
-	unsigned int	pid;
+	int					pid;
+	struct sigaction	sa;
 
 	if (argc != 3)
 	{
@@ -55,6 +67,10 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
+	sa.sa_handler = handle_sig;
+	sigaction(SIGUSR1, &sa, NULL);
 	send_signal(pid, argv[2]);
+	while (recieved_signal == 0)
+		;
 	return (0);
 }
