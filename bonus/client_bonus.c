@@ -6,7 +6,7 @@
 /*   By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:25:34 by olaaroub          #+#    #+#             */
-/*   Updated: 2024/06/10 22:25:10 by olaaroub         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:58:46 by olaaroub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	send_signal(int pid, char *str)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			usleep(50);
+			usleep(80);
 			i--;
 		}
 		k++;
