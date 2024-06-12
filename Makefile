@@ -6,7 +6,7 @@
 #    By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/08 20:43:53 by olaaroub          #+#    #+#              #
-#    Updated: 2024/06/10 19:57:09 by olaaroub         ###   ########.fr        #
+#    Updated: 2024/06/12 19:09:22 by olaaroub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,4 +62,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: clean fclean re all bonus
-.SECONDARY: $(CLIENT_OBJ) $(SERVER_OBJ)
+.SECONDARY: $(CLIENT_OBJ) $(SERVER_OBJ) $(CLIENT_BONUS_OBJ) $(SERVER_BONUS_OBJ)

@@ -6,7 +6,7 @@
 /*   By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 17:34:00 by olaaroub          #+#    #+#             */
-/*   Updated: 2024/06/10 22:25:32 by olaaroub         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:56:19 by olaaroub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	send_signal(int pid, char *str)
 
 int	main(int argc, char **argv)
 {
-	unsigned int	pid;
+	int	pid;
 
 	if (argc != 3)
 	{
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
-	if (pid <= 0 || kill(pid, 0) == -1)
+	if (pid == -1 || kill(pid, 0) == -1)
 	{
 		ft_printf("\033[0;31mInvalid PID\033[0m\n");
 		return (1);

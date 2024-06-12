@@ -6,7 +6,7 @@
 /*   By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:25:34 by olaaroub          #+#    #+#             */
-/*   Updated: 2024/06/11 17:58:46 by olaaroub         ###   ########.fr       */
+/*   Updated: 2024/06/12 19:06:24 by olaaroub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
-	if (kill(pid, 0) == -1 || pid <= 0)
+	if (kill(pid, 0) == -1 || pid == -1)
 	{
 		ft_printf("\033[0;31mInvalid PID\033[0m\n");
 		return (1);
