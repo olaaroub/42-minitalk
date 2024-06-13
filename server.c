@@ -6,12 +6,16 @@
 /*   By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:53:36 by olaaroub          #+#    #+#             */
-/*   Updated: 2024/06/12 19:35:13 by olaaroub         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:04:49 by olaaroub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <signal.h>
+
+#define YELLOW "\033[0;33m"
+#define GREEN "\033[0;32m"
+#define RESET "\033[0m"
 
 static void	signal_handler(int sig_val, siginfo_t *info, void *other)
 {
@@ -49,7 +53,7 @@ int	main(void)
 	action.sa_sigaction = signal_handler;
 	action.sa_flags = SA_SIGINFO;
 	pid = getpid();
-	ft_printf("\033[0;32m%d\033[0m\n", pid);
+	ft_printf("%s%d%s\n", GREEN, pid, RESET);
 	sigaction(SIGUSR1, &action, NULL);
 	sigaction(SIGUSR2, &action, NULL);
 	while (1)

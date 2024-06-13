@@ -6,14 +6,18 @@
 /*   By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:26:16 by olaaroub          #+#    #+#             */
-/*   Updated: 2024/06/12 19:34:37 by olaaroub         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:01:07 by olaaroub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include <signal.h>
 
-void	inform_client(siginfo_t *info)
+#define YELLOW "\033[0;33m"
+#define GREEN "\033[0;32m"
+#define RESET "\033[0m"
+
+static void	inform_client(siginfo_t *info)
 {
 	write(1, "\n", 1);
 	kill(info->si_pid, SIGUSR1);
@@ -55,7 +59,7 @@ int	main(void)
 	action.sa_sigaction = signal_handler;
 	action.sa_flags = SA_SIGINFO;
 	pid = getpid();
-	ft_printf("\033[0;32m%d\033[0m\n", pid);
+	ft_printf("%s%d%s\n", GREEN, pid, RESET);
 	sigaction(SIGUSR1, &action, NULL);
 	sigaction(SIGUSR2, &action, NULL);
 	while (1)

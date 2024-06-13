@@ -6,12 +6,15 @@
 /*   By: olaaroub <olaaroub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 17:34:00 by olaaroub          #+#    #+#             */
-/*   Updated: 2024/06/12 18:56:19 by olaaroub         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:50:37 by olaaroub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <signal.h>
+
+#define RED "\033[0;31m"
+#define RESET "\033[0m"
 
 static void	send_signal(int pid, char *str)
 {
@@ -46,13 +49,13 @@ int	main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		ft_printf("\033[0;31mUsage: ./client  <PID> <message>\033[0m\n");
+		ft_printf("%sUsage: ./client <PID> <message>%s\n", RED, RESET);
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
 	if (pid == -1 || kill(pid, 0) == -1)
 	{
-		ft_printf("\033[0;31mInvalid PID\033[0m\n");
+		ft_printf("%sInvalid PID%s\n", RED, RESET);
 		return (1);
 	}
 	send_signal(pid, argv[2]);
